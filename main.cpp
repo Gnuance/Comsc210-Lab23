@@ -79,14 +79,14 @@ int main_menu()
     do
     {
         // output prompt
-        cout << "*** GOAT MANAGER 3001 ***" << endl
-             << "[1] Add a goat" << endl
-             << "[2] Delete a goat" << endl
-             << "[3] List goats" << endl
-             << "[4] Quit" << endl
+        cout << "*** GOAT MANAGER 3001 ***" << "\n"
+             << "[1] Add a goat" << "\n"
+             << "[2] Delete a goat" << "\n"
+             << "[3] List goats" << "\n"
+             << "[4] Quit" << "\n"
              << "Choice --> ";
         getline(cin, userInput); // get user input as string and test
-        cout << endl;
+        cout << "\n";
     } while (!isValidOption(userInput, 1, 4));
 
     // if isValidOption passed, stoi(userInput) has already been tested and is safe
@@ -106,14 +106,14 @@ bool isValidOption(string userInput, int minOption, int maxOption)
     }
     catch (const std::exception &e)
     {
-        cout << "Invalid input: Please enter a valid integer." << endl << endl;
+        cout << "Invalid input: Please enter a valid integer." << "\n\n";
         return false;
     }
 
     // if userInput is an int but outside expected range
     if (selectedOption < minOption || selectedOption > maxOption)
     {
-        cout << "Invalid input: Please enter an integer between " << minOption << " and " << maxOption << "." << endl << endl;
+        cout << "Invalid input: Please enter an integer between " << minOption << " and " << maxOption << "." << "\n\n";
         return false;
     }
 
@@ -129,7 +129,7 @@ void add_goat(list<Goat> &trip, string names[], string colors[])
 
     trip.push_back(Goat(name, age, color));
 
-    cout << "Added to trip: " << name << " (" << age << ", " << color << ")" << endl << endl;
+    cout << "Added to trip: " << name << " (" << age << ", " << color << ")" << "\n\n";
 }
 
 // directly outputs trip to console
@@ -137,17 +137,17 @@ void display_trip(list<Goat> trip)
 {
     if (trip.size() < 1)
     {
-        cout << "No goats in current trip." << endl << endl;
+        cout << "No goats in current trip." << "\n\n";
         return;
     }
     
     int count = 0;
-    cout << "Trip:" << endl;
+    cout << "Trip:" << "\n";
     for (auto it = trip.begin(); it != trip.end(); it++)
     {
-        cout << "\t[" << ++count << "] " << it->get_name() << " (" << it->get_age() << ", " << it->get_color() << ")" << endl;
+        cout << "\t[" << ++count << "] " << it->get_name() << " (" << it->get_age() << ", " << it->get_color() << ")" << "\n";
     }
-    cout << endl;
+    cout << "\n";
 }
 
 // lets user select a Goat to delete
@@ -156,7 +156,7 @@ void delete_goat(list<Goat> &trip)
     // guard statement in case of empty list
     if (trip.size() < 1)
     {
-        cout << "Trip is empty, no goats to delete." << endl << endl;
+        cout << "Trip is empty, no goats to delete." << "\n\n";
         return;
     }
 
@@ -176,7 +176,7 @@ void delete_goat(list<Goat> &trip)
         {
             advance(it, stoi(userInput) - 1); // -1 because index displayed to users starts at 1
             trip.erase(it);
-            cout << endl << "Updated Trip After Deletion" << endl;
+            cout << "\n" << "Updated Trip After Deletion" << "\n";
             display_trip(trip);
             break;
         }
