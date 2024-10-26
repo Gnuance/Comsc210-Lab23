@@ -92,6 +92,7 @@ int main_menu()
 }
 
 // return t/f if userInput is a valid int between min and max
+// helper function for main_menu and delete_goat
 // WARNING: stoi() will convert a double to an int or any string following an int.
 // Ex: stoi("2.9") will return 2 and so will stoi("2tGznso"), etc.
 bool isValidOption(string userInput, int minOption, int maxOption)
@@ -148,7 +149,10 @@ void delete_goat(list<Goat> &trip)
     do
     {
         display_trip(trip);
-        getline(cin, userInput); // get user input as string and test
-        isValidOption(userInput, 1, trip.size())
+        getline(cin, userInput); // get user input as string
+        // make sure user value is valid and delete
+        if(isValidOption(userInput, 1, trip.size())) {
+            trip.erase(2);
+        } 
     } while (true);
 }
