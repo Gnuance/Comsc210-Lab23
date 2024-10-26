@@ -3,6 +3,10 @@
     Task One: See Goat.h
     Task Two: Write a GM3K1 engine that loops on this menu.
         Write a main_menu() function that outputs this and then obtains, validates, and returns the user's choice.
+    Task Three: Write functions to add a goat to the trip, delete a goat from the trip, and display the current trip.
+        When you're adding a goat, randomly select a name and color from main()'s arrays and select a random age between 0 and MAX_AGE.
+        When you're asking the user to select a certain goat, display a submenu in this format (see assignment),
+            allowing the user to input an integer to reference the correct goat.
 */
 
 #include <iostream>
@@ -66,6 +70,9 @@ int main_menu()
     return stoi(userInput);
 }
 
+// return t/f if userInput is a valid int between min and max
+// WARNING: stoi() will convert a double to an int or any string following an int.
+    // Ex: stoi("2.9") will return 2 and so will stoi("2tGznso"), etc.
 bool isValidOption(string userInput, int minOption, int maxOption)
 {
     int selectedOption = 0;
