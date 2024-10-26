@@ -106,14 +106,14 @@ bool isValidOption(string userInput, int minOption, int maxOption)
     }
     catch (const std::exception &e)
     {
-        cout << "Invalid input: Please enter a valid integer." << endl;
+        cout << "Invalid input: Please enter a valid integer." << endl << endl;
         return false;
     }
 
     // if userInput is an int but outside expected range
     if (selectedOption < minOption || selectedOption > maxOption)
     {
-        cout << "Invalid input: Please enter an integer between " << minOption << " and " << maxOption << "." << endl;
+        cout << "Invalid input: Please enter an integer between " << minOption << " and " << maxOption << "." << endl << endl;
         return false;
     }
 
@@ -128,6 +128,8 @@ void add_goat(list<Goat> &trip, string names[], string colors[])
     string color = colors[rand() % SZ_COLORS];
 
     trip.push_back(Goat(name, age, color));
+
+    cout << "Added to trip: " << name << " (" << age << ", " << color << ")" << endl << endl;
 }
 
 // directly outputs trip to console
@@ -135,17 +137,17 @@ void display_trip(list<Goat> trip)
 {
     if (trip.size() < 1)
     {
-        cout << endl << "No goats in current trip." << endl;
+        cout << "No goats in current trip." << endl << endl;
         return;
     }
     
     int count = 0;
-    cout << endl
-         << "Trip:" << endl;
+    cout << "Trip:" << endl;
     for (auto it = trip.begin(); it != trip.end(); it++)
     {
         cout << "\t[" << ++count << "] " << it->get_name() << " (" << it->get_age() << ", " << it->get_color() << ")" << endl;
     }
+    cout << endl;
 }
 
 // lets user select a Goat to delete
@@ -154,7 +156,7 @@ void delete_goat(list<Goat> &trip)
     // guard statement in case of empty list
     if (trip.size() < 1)
     {
-        cout << endl << "Trip is empty, no goats to delete." << endl;
+        cout << "Trip is empty, no goats to delete." << endl << endl;
         return;
     }
 
@@ -174,8 +176,7 @@ void delete_goat(list<Goat> &trip)
         {
             advance(it, stoi(userInput) - 1); // -1 because index displayed to users starts at 1
             trip.erase(it);
-            cout << endl
-                 << "Updated Trip After Deletion";
+            cout << endl << "Updated Trip After Deletion" << endl;
             display_trip(trip);
             break;
         }
