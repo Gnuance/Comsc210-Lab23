@@ -40,7 +40,7 @@ int main()
         ;
     fin1.close();
 
-    main_menu();
+    cout << main_menu();
 
     return 0;
 }
@@ -50,17 +50,20 @@ int main_menu()
 {
     string userInput = "";
 
-    // output prompt
-    cout << "*** GOAT MANAGER 3001 ***" << endl
-         << "[1] Add a goat" << endl
-         << "[2] Delete a goat" << endl
-         << "[3] List goats" << endl
-         << "[4] Quit" << endl
-         << "Choice --> ";
+    do
+    {
+        // output prompt
+        cout << "*** GOAT MANAGER 3001 ***" << endl
+             << "[1] Add a goat" << endl
+             << "[2] Delete a goat" << endl
+             << "[3] List goats" << endl
+             << "[4] Quit" << endl
+             << "Choice --> ";
+        getline(cin, userInput); // get user input as string and test
+    } while (!isValidOption(userInput, 1, 4));
 
-    getline(cin, userInput);
-
-    return 0;
+    // if isValidOption passed, stoi(userInput) has already been tested and is safe
+    return stoi(userInput);
 }
 
 bool isValidOption(string userInput, int minOption, int maxOption)
@@ -70,7 +73,7 @@ bool isValidOption(string userInput, int minOption, int maxOption)
     {
         selectedOption = stoi(userInput);
     }
-    catch(const std::exception& e)
+    catch (const std::exception &e)
     {
         cout << "Invalid input: Please enter a valid integer." << endl;
         return false;
@@ -82,6 +85,6 @@ bool isValidOption(string userInput, int minOption, int maxOption)
         cout << "Invalid input: Please enter an integer between " << minOption << " and " << maxOption << "." << endl;
         return false;
     }
-    
+
     return true;
 }
