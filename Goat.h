@@ -1,5 +1,13 @@
 // Goat.h
 
+/*  
+    OBJECTIVE
+    Task One: Write three more constructors for the Goat class:
+        one that has just the name as an argument;
+        one with name and age;
+        and the last with all parameters.
+*/
+
 #ifndef GOAT_H
 #define GOAT_H
 #include <iostream>
@@ -11,8 +19,14 @@ private:
     int age;
     string color;
 public: 
-    Goat()                          { name = ""; age = 0; color = ""; }
+    Goat()                              { name = ""; age = 0; color = ""; }
     // write three more constructors
+    // just name as an argument
+    Goat(string n)                      { name = n; age = 0; color = ""; }
+    // name and age
+    Goat(string n, int a)               { name = n; age = a; color = ""; }
+    // name, age, and color
+    Goat(string n, int a, string c) { name = n; age = a; color = c; }
 
     // setters and getters
     void set_name(string n)         { name = n; };
