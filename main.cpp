@@ -7,6 +7,7 @@
         When you're adding a goat, randomly select a name and color from main()'s arrays and select a random age between 0 and MAX_AGE.
         When you're asking the user to select a certain goat, display a submenu in this format (see assignment),
             allowing the user to input an integer to reference the correct goat.
+    Task Four: Polish your output so it looks neatly laid out and flows intuitively.
 */
 
 #include <iostream>
@@ -132,6 +133,12 @@ void add_goat(list<Goat> &trip, string names[], string colors[])
 // directly outputs trip to console
 void display_trip(list<Goat> trip)
 {
+    if (trip.size() < 1)
+    {
+        cout << endl << "No goats in current trip." << endl;
+        return;
+    }
+    
     int count = 0;
     cout << endl
          << "Trip:" << endl;
@@ -144,6 +151,13 @@ void display_trip(list<Goat> trip)
 // lets user select a Goat to delete
 void delete_goat(list<Goat> &trip)
 {
+    // guard statement in case of empty list
+    if (trip.size() < 1)
+    {
+        cout << endl << "Trip is empty, no goats to delete." << endl;
+        return;
+    }
+
     string userInput = "";
     auto it = trip.begin(); // iterator to first element
 
@@ -161,7 +175,7 @@ void delete_goat(list<Goat> &trip)
             advance(it, stoi(userInput) - 1); // -1 because index displayed to users starts at 1
             trip.erase(it);
             cout << endl
-                 << "Updated Trip After Deletion:";
+                 << "Updated Trip After Deletion";
             display_trip(trip);
             break;
         }
