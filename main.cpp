@@ -72,7 +72,7 @@ int main_menu()
 
 // return t/f if userInput is a valid int between min and max
 // WARNING: stoi() will convert a double to an int or any string following an int.
-    // Ex: stoi("2.9") will return 2 and so will stoi("2tGznso"), etc.
+// Ex: stoi("2.9") will return 2 and so will stoi("2tGznso"), etc.
 bool isValidOption(string userInput, int minOption, int maxOption)
 {
     int selectedOption = 0;
@@ -94,4 +94,16 @@ bool isValidOption(string userInput, int minOption, int maxOption)
     }
 
     return true;
+}
+
+// adds random goat to trip
+void add_goat(list<Goat> &trip, string names[], string colors[])
+{
+    string name = names[rand() % SZ_NAMES];
+    int age = rand() % MAX_AGE + 1;
+    string color = colors[rand() % SZ_COLORS];
+}
+
+void display_trip(list<Goat> trip)
+{
 }
