@@ -27,8 +27,9 @@ bool isValidOption(string, int, int); // helper function to validate user input
 
 int main()
 {
-    srand(time(0));
+    srand(static_cast<unsigned int>(time(nullptr)));
     bool again;
+    int userSelectedOption = 0; // represents user option chosen from menu
 
     // read & populate arrays for names and colors
     ifstream fin("names.txt");
@@ -44,7 +45,15 @@ int main()
         ;
     fin1.close();
 
-    cout << main_menu();
+    // prompt user for selection and input
+    do
+    {
+        userSelectedOption = main_menu();
+        
+        
+
+    } while (userSelectedOption != 4);
+    
 
     return 0;
 }
