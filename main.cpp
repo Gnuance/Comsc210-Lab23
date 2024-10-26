@@ -102,8 +102,18 @@ void add_goat(list<Goat> &trip, string names[], string colors[])
     string name = names[rand() % SZ_NAMES];
     int age = rand() % MAX_AGE + 1;
     string color = colors[rand() % SZ_COLORS];
+
+    trip.push_back(Goat(name, age, color));
 }
 
+// directly outputs trip to console
 void display_trip(list<Goat> trip)
 {
+    int count = 0;
+    cout << "Trip:" << endl;
+    for (auto it = trip.begin(); it != trip.end(); it++)
+    {
+        cout << "\t[" << ++count << "] " << it->get_name() << " (" << it->get_age() << ", " << it->get_color() << ")" << endl;
+    }
+    
 }
