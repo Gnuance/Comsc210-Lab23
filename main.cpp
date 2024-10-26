@@ -56,9 +56,9 @@ int main()
         case 1:
             add_goat(trip, names, colors);
             break;
-        // case 2:
-        //     delete_goat(trip);
-        //     break;
+        case 2:
+            delete_goat(trip);
+            break;
         case 3:
             display_trip(trip);
             break;
@@ -78,7 +78,8 @@ int main_menu()
     do
     {
         // output prompt
-        cout << "*** GOAT MANAGER 3001 ***" << endl
+        cout << endl
+             << "*** GOAT MANAGER 3001 ***" << endl
              << "[1] Add a goat" << endl
              << "[2] Delete a goat" << endl
              << "[3] List goats" << endl
@@ -132,7 +133,8 @@ void add_goat(list<Goat> &trip, string names[], string colors[])
 void display_trip(list<Goat> trip)
 {
     int count = 0;
-    cout << "Trip:" << endl;
+    cout << endl
+         << "Trip:" << endl;
     for (auto it = trip.begin(); it != trip.end(); it++)
     {
         cout << "\t[" << ++count << "] " << it->get_name() << " (" << it->get_age() << ", " << it->get_color() << ")" << endl;
@@ -143,16 +145,22 @@ void display_trip(list<Goat> trip)
 void delete_goat(list<Goat> &trip)
 {
     string userInput = "";
+    auto it = trip.begin(); // iterator to first element
+
     // display Goats in current trip available for selection
     // prompt user for index to delete
     // WARNING: index DISPLAYED TO USER begins at 1
     do
     {
         display_trip(trip);
+        cout << "Choice --> ";
         getline(cin, userInput); // get user input as string
         // make sure user value is valid and delete
-        if(isValidOption(userInput, 1, trip.size())) {
-            trip.erase(2);
-        } 
+        if (isValidOption(userInput, 1, trip.size()))
+        {
+            advance(it, stoi(userInput) - 1); // -1 because index displayed to users starts at 1
+            trip.erase(it);
+            break;
+        }
     } while (true);
 }
