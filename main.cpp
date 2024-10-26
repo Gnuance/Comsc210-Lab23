@@ -18,7 +18,8 @@ int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string[], string[]);
 void display_trip(list<Goat> trip);
-int main_menu();
+int main_menu();                      // outputs prompt and collects user selection
+bool isValidOption(string, int, int); // helper function to validate user input
 
 int main()
 {
@@ -47,14 +48,40 @@ int main()
 // main menu fuction for Task 2
 int main_menu()
 {
+    string userInput = "";
 
     // output prompt
     cout << "*** GOAT MANAGER 3001 ***" << endl
-        << "[1] Add a goat" << endl
-        << "[2] Delete a goat" << endl
-        << "[3] List goats" << endl
-        << "[4] Quit" << endl
-        << "Choice --> ";
+         << "[1] Add a goat" << endl
+         << "[2] Delete a goat" << endl
+         << "[3] List goats" << endl
+         << "[4] Quit" << endl
+         << "Choice --> ";
+
+    getline(cin, userInput);
 
     return 0;
+}
+
+bool isValidOption(string userInput, int minOption, int maxOption)
+{
+    int selectedOption = 0;
+    try
+    {
+        selectedOption = stoi(userInput);
+    }
+    catch(const std::exception& e)
+    {
+        cout << "Invalid input: Please enter a valid integer." << endl;
+        return false;
+    }
+
+    // if userInput is an int but outside expected range
+    if (selectedOption < minOption || selectedOption > maxOption)
+    {
+        cout << "Invalid input: Please enter an integer between " << minOption << " and " << maxOption << "." << endl;
+        return false;
+    }
+    
+    return true;
 }
