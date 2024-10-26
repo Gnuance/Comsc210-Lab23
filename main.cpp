@@ -79,14 +79,14 @@ int main_menu()
     do
     {
         // output prompt
-        cout << endl
-             << "*** GOAT MANAGER 3001 ***" << endl
+        cout << "*** GOAT MANAGER 3001 ***" << endl
              << "[1] Add a goat" << endl
              << "[2] Delete a goat" << endl
              << "[3] List goats" << endl
              << "[4] Quit" << endl
              << "Choice --> ";
         getline(cin, userInput); // get user input as string and test
+        cout << endl;
     } while (!isValidOption(userInput, 1, 4));
 
     // if isValidOption passed, stoi(userInput) has already been tested and is safe
