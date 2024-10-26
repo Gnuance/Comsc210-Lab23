@@ -137,3 +137,18 @@ void display_trip(list<Goat> trip)
         cout << "\t[" << ++count << "] " << it->get_name() << " (" << it->get_age() << ", " << it->get_color() << ")" << endl;
     }
 }
+
+// lets user select a Goat to delete
+void delete_goat(list<Goat> &trip)
+{
+    string userInput = "";
+    // display Goats in current trip available for selection
+    // prompt user for index to delete
+    // WARNING: index DISPLAYED TO USER begins at 1
+    do
+    {
+        display_trip(trip);
+        getline(cin, userInput); // get user input as string and test
+        isValidOption(userInput, 1, trip.size())
+    } while (true);
+}
