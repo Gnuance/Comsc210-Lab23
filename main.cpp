@@ -153,13 +153,16 @@ void delete_goat(list<Goat> &trip)
     do
     {
         display_trip(trip);
-        cout << "Choice --> ";
+        cout << "Please enter index to delete --> ";
         getline(cin, userInput); // get user input as string
         // make sure user value is valid and delete
         if (isValidOption(userInput, 1, trip.size()))
         {
             advance(it, stoi(userInput) - 1); // -1 because index displayed to users starts at 1
             trip.erase(it);
+            cout << endl
+                 << "Updated Trip After Deletion:";
+            display_trip(trip);
             break;
         }
     } while (true);
