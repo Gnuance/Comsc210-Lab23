@@ -27,6 +27,7 @@ bool isValidOption(string, int, int); // helper function to validate user input
 
 int main()
 {
+    list<Goat> trip = {};
     srand(static_cast<unsigned int>(time(nullptr)));
     bool again;
     int userSelectedOption = 0; // represents user option chosen from menu
@@ -46,14 +47,25 @@ int main()
     fin1.close();
 
     // prompt user for selection and input
+    // user selection 4 is the program exit code
     do
     {
         userSelectedOption = main_menu();
-        
-        
-
+        switch (userSelectedOption)
+        {
+        case 1:
+            add_goat(trip, names, colors);
+            break;
+        // case 2:
+        //     delete_goat(trip);
+        //     break;
+        case 3:
+            display_trip(trip);
+            break;
+        default:
+            break;
+        }
     } while (userSelectedOption != 4);
-    
 
     return 0;
 }
@@ -124,5 +136,4 @@ void display_trip(list<Goat> trip)
     {
         cout << "\t[" << ++count << "] " << it->get_name() << " (" << it->get_age() << ", " << it->get_color() << ")" << endl;
     }
-    
 }
